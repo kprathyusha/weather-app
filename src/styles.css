@@ -1,0 +1,70 @@
+body {
+  background: url("media/pexels-aaron-burden.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.container {
+  max-width: 40%;
+  text-align: center;
+  margin: 30px auto;
+  font-family: "El Messiri", sans-serif;
+  border: 1px solid #000;
+  border-radius: 45px;
+  /* background-color: rgba(248, 248, 159, 0.5); 
+  backdrop-filter: blur(8px);*/
+}
+.search {
+  margin: 10px auto;
+}
+.search-city {
+  text-align: right;
+  padding: 6px 2px;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+.search-city::placeholder {
+  text-align: right;
+}
+.search-btn {
+  line-height: normal;
+}
+h1 {
+  font-size: 75px;
+  line-height: 0.8;
+  font-weight: 800;
+  margin: 8px auto;
+}
+.temperature {
+  font-size: 60px;
+}
+.current-weather {
+  padding: 20px;
+}
+.units {
+  font-size: 25px;
+  position: relative;
+  top: -25px;
+}
+.units a {
+  text-decoration: none;
+  color: #000;
+}
+.weather-pattern {
+  list-style: none;
+  padding: 2px;
+  margin: 0 auto;
+}
+.weather-description,
+h4 {
+  text-transform: capitalize;
+}
+.weather-icon {
+  font-size: 85px;
+}
+.forecast .col {
+  max-width: 100%;
+}
