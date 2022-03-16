@@ -88,6 +88,7 @@ function updateWeather(response) {
   let currentCity = document.querySelector("h1");
   currentCity.innerHTML = `${displayCity}`;
 }
+searchWeather("Toronto");
 
 function currentLocation(position) {
   let latitude = position.coords.latitude;
