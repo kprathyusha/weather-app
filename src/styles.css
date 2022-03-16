@@ -12,8 +12,6 @@ body {
   font-family: "El Messiri", sans-serif;
   border: 1px solid #000;
   border-radius: 45px;
-  /* background-color: rgba(248, 248, 159, 0.5); 
-  backdrop-filter: blur(8px);*/
 }
 .search {
   margin: 10px auto;
@@ -58,8 +56,7 @@ h1 {
   padding: 2px;
   margin: 0 auto;
 }
-.weather-description,
-h4 {
+.weather-description {
   text-transform: capitalize;
 }
 .weather-icon {
@@ -67,4 +64,11 @@ h4 {
 }
 .forecast .col {
   max-width: 100%;
+}
+.coder {
+  text-align: center;
+  font-size: 14px;
+}
+.coder a {
+  text-decoration: none;
 }

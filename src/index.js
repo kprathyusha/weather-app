@@ -42,41 +42,22 @@ let presentday = new Date();
 let formattedDate = document.getElementById("dateTime");
 formattedDate.innerHTML = formatDate(presentday);
 
-function searchWeather(event) {
+function searchCity(event) {
   event.preventDefault();
   let searchInputCity = document.querySelector("#searchInput");
   let cityName = searchInputCity.value;
-
-  let city = document.querySelector("h1");
-  city.innerHTML = `${cityName}`;
-
+  searchWeather(cityName);
+}
+function searchWeather(city) {
   let unit = "metric";
   let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let url = `${apiEndpoint}?q=${cityName}&appid=${apiKey}&units=${unit}`;
+  let url = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
   axios.get(url).then(updateWeather);
 }
+
 let search = document.querySelector("#searchForm");
-search.addEventListener("submit", searchWeather);
-
-// function newTemperature(temperature) {
-//   let degrees = document.querySelector("#degrees");
-//   degrees.innerHTML = temperature;
-// }
-// let cTemp = document.querySelector("#celsiusLink");
-// cTemp.addEventListener("click", function () {
-//   newTemperature(-6);
-// });
-
-// // function newTemperature() {
-// //   let degrees = document.querySelector("#degrees");
-// //   degrees.innerHTML = 21;
-// // }
-// let fTemp = document.querySelector("#fahrenheitLink");
-// fTemp.addEventListener("click", function () {
-//   newTemperature(21);
-// });
-//let city = "London";
+search.addEventListener("submit", searchCity);
 
 function updateWeather(response) {
   let displayTemperature = Math.round(response.data.main.temp);
@@ -106,16 +87,11 @@ function updateWeather(response) {
   let displayCity = response.data.name;
   let currentCity = document.querySelector("h1");
   currentCity.innerHTML = `${displayCity}`;
-
-  //console.log(displayCity);
-  //endpoint:find- console.log(response.data.list[0].sys.country);
 }
+
 function currentLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  // console.log(latitude);
-  // console.log(longitude);
-
   let unit = "metric";
   let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
