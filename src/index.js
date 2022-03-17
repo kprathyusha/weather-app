@@ -56,9 +56,6 @@ function searchWeather(city) {
   axios.get(url).then(updateWeather);
 }
 
-let search = document.querySelector("#searchForm");
-search.addEventListener("submit", searchCity);
-
 function updateWeather(response) {
   let displayTemperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#degrees");
@@ -74,7 +71,7 @@ function updateWeather(response) {
 
   let displayWindspeed = Math.round(response.data.wind.speed);
   let currentWindspeed = document.querySelector("#windSpeed");
-  currentWindspeed.innerHTML = `${displayWindspeed} m/s`;
+  currentWindspeed.innerHTML = `${displayWindspeed} km/h`;
 
   let displayDescription = response.data.weather[0].description;
   let currentDescription = document.querySelector("#weatherDescription");
@@ -87,7 +84,15 @@ function updateWeather(response) {
   let displayCity = response.data.name;
   let currentCity = document.querySelector("h1");
   currentCity.innerHTML = `${displayCity}`;
+
+  let weatherIcon = document.querySelector("#weatherIcon");
+  weatherIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
+let search = document.querySelector("#searchForm");
+search.addEventListener("submit", searchCity);
 
 function currentLocation(position) {
   let latitude = position.coords.latitude;
@@ -105,4 +110,5 @@ function getCurrentLocation(event) {
 
 let locationButton = document.querySelector("#locationBtn");
 locationButton.addEventListener("click", getCurrentLocation);
+
 searchWeather("Toronto");

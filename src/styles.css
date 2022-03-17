@@ -6,7 +6,7 @@ body {
   background-attachment: fixed;
 }
 .container {
-  max-width: 40%;
+  max-width: 500px;
   text-align: center;
   margin: 30px auto;
   font-family: "El Messiri", sans-serif;
@@ -60,7 +60,8 @@ h1 {
   text-transform: capitalize;
 }
 .weather-icon {
-  font-size: 85px;
+  height: 150px;
+  max-width: 150px;
 }
 /* .forecast .col {
   max-width: 100%;
