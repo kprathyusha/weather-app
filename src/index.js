@@ -88,7 +88,6 @@ function updateWeather(response) {
   let currentCity = document.querySelector("h1");
   currentCity.innerHTML = `${displayCity}`;
 }
-searchWeather("Toronto");
 
 function currentLocation(position) {
   let latitude = position.coords.latitude;
@@ -106,3 +105,4 @@ function getCurrentLocation(event) {
 
 let locationButton = document.querySelector("#locationBtn");
 locationButton.addEventListener("click", getCurrentLocation);
+searchWeather("Toronto");

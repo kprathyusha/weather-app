@@ -62,9 +62,9 @@ h1 {
 .weather-icon {
   font-size: 85px;
 }
-.forecast .col {
+/* .forecast .col {
   max-width: 100%;
-}
+} */
 .coder {
   text-align: center;
   font-size: 14px;
