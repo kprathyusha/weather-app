@@ -90,6 +90,8 @@ function updateWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+
+  celsiusTemperature = displayTemperature;
 }
 let search = document.querySelector("#searchForm");
 search.addEventListener("submit", searchCity);
@@ -110,5 +112,29 @@ function getCurrentLocation(event) {
 
 let locationButton = document.querySelector("#locationBtn");
 locationButton.addEventListener("click", getCurrentLocation);
+
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#degrees");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#degrees");
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  temperatureElement.innerHTML = celsiusTemperature;
+}
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheitUnit");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsiusUnit");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchWeather("Toronto");

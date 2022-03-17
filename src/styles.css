@@ -49,7 +49,7 @@ h1 {
 }
 .units a {
   text-decoration: none;
-  color: #000;
+  /* color: #000; */
 }
 .weather-pattern {
   list-style: none;
@@ -72,4 +72,8 @@ h1 {
 }
 .coder a {
   text-decoration: none;
+}
+.units .active {
+  color: #000;
+  cursor: default;
 }
