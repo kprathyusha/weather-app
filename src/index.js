@@ -1,4 +1,5 @@
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -38,9 +39,6 @@ function formatDate(date) {
   let result = `${currentDay}, ${currentMonth} ${currentDate}, ${currentHour}:${currentMinutes} ${amPm}`;
   return result;
 }
-let presentday = new Date();
-let formattedDate = document.getElementById("dateTime");
-formattedDate.innerHTML = formatDate(presentday);
 
 function searchCity(event) {
   event.preventDefault();
@@ -63,7 +61,7 @@ function updateWeather(response) {
 
   let displayFeelslike = Math.round(response.data.main.feels_like);
   let currentFeelslike = document.querySelector("#tempFeelslike");
-  currentFeelslike.innerHTML = `Feels like ${displayFeelslike}°`;
+  currentFeelslike.innerHTML = `${displayFeelslike}°`;
 
   let displayHumidity = Math.round(response.data.main.humidity);
   let currentHumidity = document.querySelector("#humidityId");
@@ -91,7 +89,12 @@ function updateWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 
+  let displayDate = document.getElementById("dateTime");
+  displayDate.innerHTML = formatDate(response.data.dt * 1000);
+
   celsiusTemperature = displayTemperature;
+  feelslikeTemperature = displayFeelslike;
+  //console.log(feelslikeTemperature);
 }
 let search = document.querySelector("#searchForm");
 search.addEventListener("submit", searchCity);
@@ -116,10 +119,17 @@ locationButton.addEventListener("click", getCurrentLocation);
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#degrees");
+
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
+
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  // console.log(feelslikeTemperature);
+  // console.log(feelsLikeElement);
+  let feelsLikeElement = document.querySelector("#tempFeelslike");
+  let fahrenheitFeelsLike = (feelslikeTemperature * 9) / 5 + 32;
+  feelsLikeElement.innerHTML = `${Math.round(fahrenheitFeelsLike)}°`;
 }
 function showCelsiusTemperature(event) {
   event.preventDefault();
@@ -127,9 +137,13 @@ function showCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   temperatureElement.innerHTML = celsiusTemperature;
+
+  let feelsLikeElement = document.querySelector("#tempFeelslike");
+  feelsLikeElement.innerHTML = `${feelslikeTemperature}°`;
 }
 
 let celsiusTemperature = null;
+let feelslikeTemperature = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheitUnit");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
