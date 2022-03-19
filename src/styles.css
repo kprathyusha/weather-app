@@ -63,9 +63,9 @@ h1 {
   height: 150px;
   max-width: 150px;
 }
-/* .forecast .col {
+.forecast .col {
   max-width: 100%;
-} */
+}
 .coder {
   text-align: center;
   font-size: 14px;
