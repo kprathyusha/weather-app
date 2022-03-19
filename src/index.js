@@ -94,7 +94,6 @@ function updateWeather(response) {
 
   celsiusTemperature = displayTemperature;
   feelslikeTemperature = displayFeelslike;
-  //console.log(feelslikeTemperature);
 }
 let search = document.querySelector("#searchForm");
 search.addEventListener("submit", searchCity);
@@ -120,13 +119,12 @@ function showFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#degrees");
 
-  celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
 
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-  // console.log(feelslikeTemperature);
-  // console.log(feelsLikeElement);
+
   let feelsLikeElement = document.querySelector("#tempFeelslike");
   let fahrenheitFeelsLike = (feelslikeTemperature * 9) / 5 + 32;
   feelsLikeElement.innerHTML = `${Math.round(fahrenheitFeelsLike)}°`;
@@ -134,8 +132,9 @@ function showFahrenheitTemperature(event) {
 function showCelsiusTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#degrees");
-  fahrenheitLink.classList.remove("active");
+
   celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   temperatureElement.innerHTML = celsiusTemperature;
 
   let feelsLikeElement = document.querySelector("#tempFeelslike");
