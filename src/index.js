@@ -67,7 +67,7 @@ function updateWeather(response) {
   let currentHumidity = document.querySelector("#humidityId");
   currentHumidity.innerHTML = `${displayHumidity}%`;
 
-  let displayWindspeed = Math.round(response.data.wind.speed);
+  let displayWindspeed = Math.round(response.data.wind.speed * 3.6);
   let currentWindspeed = document.querySelector("#windSpeed");
   currentWindspeed.innerHTML = `${displayWindspeed} km/h`;
 
@@ -117,10 +117,9 @@ locationButton.addEventListener("click", getCurrentLocation);
 
 function showFahrenheitTemperature(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#degrees");
-
   fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#degrees");
 
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
@@ -131,10 +130,10 @@ function showFahrenheitTemperature(event) {
 }
 function showCelsiusTemperature(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#degrees");
-
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#degrees");
+
   temperatureElement.innerHTML = celsiusTemperature;
 
   let feelsLikeElement = document.querySelector("#tempFeelslike");
