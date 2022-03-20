@@ -39,6 +39,11 @@ function formatDate(timestamp) {
   let result = `${currentDay}, ${currentMonth} ${currentDate}, ${currentHour}:${currentMinutes} ${amPm}`;
   return result;
 }
+function getForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = `${months[date.getMonth()]} ${date.getDate()}`;
+  return day;
+}
 function displayForecast(response) {
   let forecastElement = document.querySelector("#dailyForecast");
   let nextDays = response.data.daily;
@@ -46,7 +51,7 @@ function displayForecast(response) {
   let forecastHtml = "";
   nextDays.forEach(function (day, index) {
     //console.log(day);
-    let upcomingDay = index;
+    let upcomingDay = getForecastDay(day.dt);
     if (index == 0) {
       upcomingDay = "Tomorrow";
     }
