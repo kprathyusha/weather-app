@@ -1,3 +1,17 @@
+let months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let days = [
@@ -11,20 +25,6 @@ function formatDate(timestamp) {
   ];
   let currentDay = days[date.getDay()];
 
-  let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
   let currentMonth = months[date.getMonth()];
   let currentDate = date.getDate();
   let currentHour = date.getHours();
@@ -39,18 +39,38 @@ function formatDate(timestamp) {
   let result = `${currentDay}, ${currentMonth} ${currentDate}, ${currentHour}:${currentMinutes} ${amPm}`;
   return result;
 }
-function displayForecast() {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#dailyForecast");
+  let nextDays = response.data.daily;
+  //console.log(nextDays);
   let forecastHtml = "";
-  forecastHtml += ` <div class="col-2">
-          <h6 class="title">Tomorrow</h6>
-          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="clear" width="45">
+  nextDays.forEach(function (day, index) {
+    //console.log(day);
+    let upcomingDay = index;
+    if (index == 0) {
+      upcomingDay = "Tomorrow";
+    }
+    if (index < 6) {
+      forecastHtml += ` <div class="col-2">
+          <h6 class="title">${upcomingDay}</h6>
+          <img src="http://openweathermap.org/img/wn/${
+            day.weather[0].icon
+          }@2x.png" alt="clear" width="45">
           <p>
-            <span class="min-temperature"><strong>-4°</strong></span>
-            <span class="max-temperature">-10°</span>
+            <span class="max-temperature"><strong>${Math.round(
+              day.temp.max
+            )}°</strong></span>
+            <span class="min-temperature">${Math.round(day.temp.min)}°</span>
           </p>
         </div>`;
+    }
+  });
   forecastElement.innerHTML = forecastHtml;
+}
+function getforecastData(coords) {
+  let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 function searchCity(event) {
   event.preventDefault();
@@ -106,6 +126,8 @@ function updateWeather(response) {
 
   celsiusTemperature = displayTemperature;
   feelslikeTemperature = displayFeelslike;
+
+  getforecastData(response.data.coord);
 }
 let search = document.querySelector("#searchForm");
 search.addEventListener("submit", searchCity);
@@ -162,4 +184,3 @@ let celsiusLink = document.querySelector("#celsiusUnit");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchWeather("Toronto");
-displayForecast();
