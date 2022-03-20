@@ -62,6 +62,7 @@ h1 {
 .weather-icon {
   height: 150px;
   max-width: 150px;
+  color: rgb(235, 235, 93);
 }
 .forecast .col {
   max-width: 100%;
