@@ -17,7 +17,6 @@ body {
   margin: 10px auto;
 }
 .search-city {
-  text-align: right;
   padding: 6px 2px;
   line-height: 1;
   background-color: transparent;
@@ -25,7 +24,8 @@ body {
   border-radius: 5px;
 }
 .search-city::placeholder {
-  text-align: right;
+  text-align: left;
+  padding-left: 2px;
 }
 .search-btn {
   line-height: normal;
@@ -43,7 +43,7 @@ h1 {
   padding: 20px;
 }
 .units {
-  font-size: 25px;
+  font-size: 22px;
   position: relative;
   top: -25px;
 }
@@ -63,6 +63,10 @@ h1 {
   height: 150px;
   max-width: 150px;
   color: rgb(235, 235, 93);
+}
+.forecast {
+  margin: 0 auto;
+  padding: 2px;
 }
 .forecast .col {
   max-width: 100%;
