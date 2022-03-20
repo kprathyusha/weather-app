@@ -39,7 +39,19 @@ function formatDate(timestamp) {
   let result = `${currentDay}, ${currentMonth} ${currentDate}, ${currentHour}:${currentMinutes} ${amPm}`;
   return result;
 }
-
+function displayForecast() {
+  let forecastElement = document.querySelector("#dailyForecast");
+  let forecastHtml = "";
+  forecastHtml += ` <div class="col-2">
+          <h6 class="title">Tomorrow</h6>
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="clear" width="45">
+          <p>
+            <span class="min-temperature"><strong>-4°</strong></span>
+            <span class="max-temperature">-10°</span>
+          </p>
+        </div>`;
+  forecastElement.innerHTML = forecastHtml;
+}
 function searchCity(event) {
   event.preventDefault();
   let searchInputCity = document.querySelector("#searchInput");
@@ -150,3 +162,4 @@ let celsiusLink = document.querySelector("#celsiusUnit");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchWeather("Toronto");
+displayForecast();
