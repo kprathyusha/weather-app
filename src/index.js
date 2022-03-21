@@ -60,16 +60,19 @@ function displayForecast(response) {
               day.weather[0].icon
           }@2x.png" alt="clear" width="45">
           <p>
-            <span class="max-temperature"><strong>${Math.round(
-                day.temp.max
-            )}°</strong></span>
-            <span class="min-temperature">${Math.round(day.temp.min)}°</span>
+            <span class="max-temperature" id="forecastTemperature"><strong>
+            ${Math.round(day.temp.max)}
+            </strong></span>°
+            <span class="min-temperature" id="forecastTemperature">
+            ${Math.round(day.temp.min)}
+            </span>°
           </p>
         </div>`;
         }
     });
     forecastElement.innerHTML = forecastHtml;
 }
+
 function getforecastData(coords) {
     let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
     let unit = isCelsius ? "metric" : "imperial";
@@ -176,6 +179,7 @@ function showFahrenheitTemperature(event) {
     currentTemperature = fahrenheitTemperature;
     feelslikeTemperature = fahrenheitFeelsLike;
     isCelsius = false;
+    convertForecastTemperatures();
 }
 function showCelsiusTemperature(event) {
     event.preventDefault();
@@ -198,6 +202,24 @@ function showCelsiusTemperature(event) {
     currentTemperature = celsiusTemperature;
     feelslikeTemperature = celsiusFeelsLike;
     isCelsius = true;
+    convertForecastTemperatures();
+}
+
+function convertForecastTemperatures() {
+    let forecastTempElements = document.querySelectorAll(
+        "#forecastTemperature"
+    );
+    forecastTempElements.forEach(function (element) {
+        // console.log(
+        //     `min: ${element.innerText} -- type: ${typeof element.innerText}`
+        // );
+        let temperature = parseInt(element.innerText);
+        let convertedTemp = isCelsius
+            ? ((temperature - 32) * 5) / 9
+            : (temperature * 9) / 5 + 32;
+        // console.log(`temp: ${temperature} -- converted:: ${convertedTemp}`);
+        element.innerHTML = `${Math.round(convertedTemp)}`;
+    });
 }
 
 let isCelsius = true;
