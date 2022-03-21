@@ -161,6 +161,9 @@ locationButton.addEventListener("click", getCurrentLocation);
 function showFahrenheitTemperature(event) {
     event.preventDefault();
 
+    if (fahrenheitLink.classList.contains("active")) {
+        return;
+    }
     fahrenheitLink.classList.add("active");
     celsiusLink.classList.remove("active");
     let temperatureElement = document.querySelector("#degrees");
@@ -184,6 +187,9 @@ function showFahrenheitTemperature(event) {
 function showCelsiusTemperature(event) {
     event.preventDefault();
 
+    if (celsiusLink.classList.contains("active")) {
+        return;
+    }
     celsiusLink.classList.add("active");
     fahrenheitLink.classList.remove("active");
     let temperatureElement = document.querySelector("#degrees");
