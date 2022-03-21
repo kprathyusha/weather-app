@@ -56,7 +56,7 @@ function displayForecast(response) {
             upcomingDay = "Tomorrow";
         }
         if (index < 6) {
-            forecastHtml += ` <div class="col-2">
+            forecastHtml += ` <div class="col-sm-2">
           <h6 class="title">${upcomingDay}</h6>
           <img src="http://openweathermap.org/img/wn/${
               day.weather[0].icon
@@ -84,13 +84,14 @@ function getforecastData(coords) {
 
 function searchCity(event) {
     event.preventDefault();
-    let searchInputCity = document.querySelector("#searchInput");
+    //let searchInputCity = document.querySelector("#searchInput");
     let cityName = searchInputCity.value;
     cityName = cityName.trim();
     if (!cityName) {
         alert("Please enter a valid city name");
         return;
     }
+
     searchWeather(cityName);
 }
 function searchWeather(city) {
@@ -248,5 +249,15 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsiusUnit");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
+
+const searchInputCity = document.querySelector("#searchInput");
+let cityOptions = {
+    types: ["(cities)"],
+};
+let autocomplete = new google.maps.places.Autocomplete(
+    searchInputCity,
+    cityOptions
+);
+//const geocoder = new google.maps.Geocoder();
 
 searchWeather("Toronto");
