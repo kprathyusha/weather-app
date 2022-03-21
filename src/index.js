@@ -13,7 +13,7 @@ let months = [
     "Dec",
 ];
 function formatDate(timestamp) {
-    let date = new Date(timestamp);
+    let date = new Date(timestamp * 1000);
     let days = [
         "Sunday",
         "Monday",
@@ -79,6 +79,7 @@ function getforecastData(coords) {
     let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
     let unit = isCelsius ? "metric" : "imperial";
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=${unit}`;
+    console.log(apiUrl);
     axios.get(apiUrl).then(displayForecast);
 }
 
@@ -146,7 +147,7 @@ function updateWeather(response) {
     );
 
     let displayDateElement = document.getElementById("dateTime");
-    displayDateElement.innerHTML = formatDate(response.data.dt * 1000);
+    displayDateElement.innerHTML = formatDate(response.data.dt);
 
     currentTemperature = displayTemperature;
     feelslikeTemperature = displayFeelslike;
@@ -258,6 +259,5 @@ let autocomplete = new google.maps.places.Autocomplete(
     searchInputCity,
     cityOptions
 );
-//const geocoder = new google.maps.Geocoder();
 
 searchWeather("Toronto");
