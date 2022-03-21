@@ -87,7 +87,7 @@ function searchCity(event) {
     let searchInputCity = document.querySelector("#searchInput");
     let cityName = searchInputCity.value;
     cityName = cityName.trim();
-    console.log(`city: ${cityName} -- type: ${typeof cityName}`);
+    // console.log(`city: ${cityName} -- type: ${typeof cityName}`);
     if (!cityName) {
         alert("Please enter a valid city name");
         return;
@@ -99,7 +99,13 @@ function searchWeather(city) {
     let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
     let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
     let url = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
-    axios.get(url).then(updateWeather);
+    axios
+        .get(url)
+        .then(updateWeather)
+        .catch(function (error) {
+            alert("Something went wrong. Kindly check the city name.");
+            console.log(`Error: ${error.message}`);
+        });
 }
 
 function updateWeather(response) {
