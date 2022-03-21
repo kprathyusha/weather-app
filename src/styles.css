@@ -12,7 +12,6 @@ body {
     font-family: "El Messiri", sans-serif;
     border: 1px solid #000;
     border-radius: 45px;
-    /* background-color: rgba(184, 223, 241, 0.5); */
     backdrop-filter: blur(5px);
 }
 .search {
@@ -56,7 +55,6 @@ h1 {
 }
 .units a {
     text-decoration: none;
-    /* color: #000; */
 }
 .weather-pattern {
     list-style: none;
@@ -69,7 +67,6 @@ h1 {
 .weather-icon {
     height: 150px;
     max-width: 150px;
-    color: rgb(235, 235, 93);
 }
 .forecast {
     margin: 0 auto;
@@ -90,7 +87,6 @@ h1 {
     font-size: 30px;
 }
 .units .active:hover {
-    /* color: rgb(16, 157, 238); */
     cursor: default;
 }
 h6 {
