@@ -6,7 +6,7 @@ body {
     background-attachment: fixed;
 }
 .container {
-    max-width: 500px;
+    max-width: 600px;
     text-align: center;
     margin: 30px auto;
     font-family: "El Messiri", sans-serif;
@@ -87,6 +87,7 @@ h1 {
 }
 .units .active {
     color: #000;
+    font-size: 30px;
 }
 .units .active:hover {
     /* color: rgb(16, 157, 238); */
@@ -94,4 +95,8 @@ h1 {
 }
 h6 {
     margin-bottom: 0;
+    font-weight: 600;
+}
+.max-temperature {
+    font-weight: bold;
 }

@@ -62,9 +62,9 @@ function displayForecast(response) {
               day.weather[0].icon
           }@2x.png" alt="clear" width="45">
           <p>
-            <span class="max-temperature" id="forecastTemperature"><strong>
+            <span class="max-temperature" id="forecastTemperature">
             ${Math.round(day.temp.max)}
-            </strong></span>°
+            </span>°
             <span class="min-temperature" id="forecastTemperature">
             ${Math.round(day.temp.min)}
             </span>°
@@ -87,7 +87,6 @@ function searchCity(event) {
     let searchInputCity = document.querySelector("#searchInput");
     let cityName = searchInputCity.value;
     cityName = cityName.trim();
-    // console.log(`city: ${cityName} -- type: ${typeof cityName}`);
     if (!cityName) {
         alert("Please enter a valid city name");
         return;
@@ -231,14 +230,11 @@ function convertForecastTemperatures() {
         "#forecastTemperature"
     );
     forecastTempElements.forEach(function (element) {
-        // console.log(
-        //     `min: ${element.innerText} -- type: ${typeof element.innerText}`
-        // );
         let temperature = parseInt(element.innerText);
         let convertedTemp = isCelsius
             ? ((temperature - 32) * 5) / 9
             : (temperature * 9) / 5 + 32;
-        // console.log(`temp: ${temperature} -- converted:: ${convertedTemp}`);
+
         element.innerHTML = `${Math.round(convertedTemp)}`;
     });
 }
