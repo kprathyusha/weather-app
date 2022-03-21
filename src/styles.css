@@ -96,3 +96,18 @@ h6 {
 .max-temperature {
     font-weight: bold;
 }
+
+.pac-container {
+    font-family: "El Messiri", sans-serif;
+    /* background: transparent; */
+    backdrop-filter: blur(5px);
+    background: rgba(222, 236, 255, 0.7);
+    border-radius: 4px;
+}
+.pac-icon {
+    display: none;
+}
+
+.pac-item:hover {
+    background-color: #ebf2fe; /*rgba(238, 238, 238, 0.7);*/
+}
