@@ -1,90 +1,90 @@
 body {
-  background: url("media/pexels-aaron-burden.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+    background: url("media/pexels-aaron-burden.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .container {
-  max-width: 500px;
-  text-align: center;
-  margin: 30px auto;
-  font-family: "El Messiri", sans-serif;
-  border: 1px solid #000;
-  border-radius: 45px;
+    max-width: 500px;
+    text-align: center;
+    margin: 30px auto;
+    font-family: "El Messiri", sans-serif;
+    border: 1px solid #000;
+    border-radius: 45px;
 }
 .search {
-  margin: 10px auto;
+    margin: 10px auto;
 }
 .search-city {
-  padding: 6px 2px;
-  line-height: 1;
-  background-color: transparent;
-  border: 1px solid #000;
-  border-radius: 5px;
+    padding: 6px 2px;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 5px;
 }
 .search-city::placeholder {
-  text-align: left;
-  padding-left: 2px;
+    text-align: left;
+    padding-left: 2px;
 }
 .search-btn {
-  line-height: normal;
+    line-height: normal;
 }
 h1 {
-  font-size: 75px;
-  line-height: 0.8;
-  font-weight: 800;
-  margin: 8px auto;
+    font-size: 75px;
+    line-height: 0.8;
+    font-weight: 800;
+    margin: 8px auto;
 }
 .temperature {
-  font-size: 60px;
+    font-size: 60px;
 }
 .current-weather {
-  padding: 20px;
+    padding: 20px;
 }
 .units {
-  font-size: 22px;
-  position: relative;
-  top: -25px;
+    font-size: 22px;
+    position: relative;
+    top: -25px;
 }
 .units a {
-  text-decoration: none;
-  /* color: #000; */
+    text-decoration: none;
+    /* color: #000; */
 }
 .weather-pattern {
-  list-style: none;
-  padding: 2px;
-  margin: 0 auto;
+    list-style: none;
+    padding: 2px;
+    margin: 0 auto;
 }
 .weather-description {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 .weather-icon {
-  height: 150px;
-  max-width: 150px;
-  color: rgb(235, 235, 93);
+    height: 150px;
+    max-width: 150px;
+    color: rgb(235, 235, 93);
 }
 .forecast {
-  margin: 0 auto;
-  padding: 2px;
+    margin: 0 auto;
+    padding: 2px;
 }
 .forecast .col {
-  max-width: 100%;
+    max-width: 100%;
 }
 .coder {
-  text-align: center;
-  font-size: 14px;
+    text-align: center;
+    font-size: 14px;
 }
 .coder a {
-  text-decoration: none;
+    text-decoration: none;
 }
 .units .active {
-  color: #000;
+    color: #000;
 }
 .units .active:hover {
-  /* color: rgb(16, 157, 238); */
-  cursor: default;
+    /* color: rgb(16, 157, 238); */
+    cursor: default;
 }
 h6 {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
