@@ -12,6 +12,8 @@ body {
     font-family: "El Messiri", sans-serif;
     border: 1px solid #000;
     border-radius: 45px;
+    /* background-color: rgba(184, 223, 241, 0.5); */
+    backdrop-filter: blur(5px);
 }
 .search {
     margin: 10px auto;
@@ -26,6 +28,7 @@ body {
 .search-city::placeholder {
     text-align: left;
     padding-left: 2px;
+    color: rgb(37, 37, 37);
 }
 .search-btn {
     line-height: normal;
