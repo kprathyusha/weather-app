@@ -81,10 +81,17 @@ function getforecastData(coords) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=${unit}`;
     axios.get(apiUrl).then(displayForecast);
 }
+
 function searchCity(event) {
     event.preventDefault();
     let searchInputCity = document.querySelector("#searchInput");
     let cityName = searchInputCity.value;
+    cityName = cityName.trim();
+    console.log(`city: ${cityName} -- type: ${typeof cityName}`);
+    if (!cityName) {
+        alert("Please enter a valid city name");
+        return;
+    }
     searchWeather(cityName);
 }
 function searchWeather(city) {
