@@ -32,6 +32,8 @@ function formatDate(timestamp) {
     let amPm = currentHour < 12 ? "a.m" : "p.m";
     if (currentHour > 12) {
         currentHour = currentHour - 12;
+    } else if (currentHour === 0) {
+        currentHour = 12;
     }
     if (currentMinutes < 10) {
         currentMinutes = "0" + currentMinutes;
