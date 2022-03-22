@@ -24,8 +24,8 @@ let days = [
 
 function formatDate(timestamp) {
     let date = new Date(timestamp * 1000);
-    let currentDay = days[date.getDay()];
 
+    let currentDay = days[date.getDay()];
     let currentMonth = months[date.getMonth()];
     let currentDate = date.getDate();
     let currentHour = date.getHours();
