@@ -12,17 +12,18 @@ let months = [
     "Nov",
     "Dec",
 ];
+let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+];
+
 function formatDate(timestamp) {
     let date = new Date(timestamp * 1000);
-    let days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-    ];
     let currentDay = days[date.getDay()];
 
     let currentMonth = months[date.getMonth()];
