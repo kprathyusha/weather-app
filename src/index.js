@@ -86,11 +86,11 @@ function displayForecast(response) {
           }@2x.png" alt="clear" width="45">
           <p>
             <span class="max-temperature" id="forecastTemperature">
-            ${Math.round(day.temp.max)}
-            </span>°
+            ${Math.round(day.temp.max)}°
+            </span>
             <span class="min-temperature" id="forecastTemperature">
-            ${Math.round(day.temp.min)}
-            </span>°
+            ${Math.round(day.temp.min)}°
+            </span>
           </p>
         </div>`;
         }
@@ -278,7 +278,7 @@ function convertForecastTemperatures() {
             ? ((temperature - 32) * 5) / 9
             : (temperature * 9) / 5 + 32;
 
-        element.innerHTML = `${Math.round(convertedTemp)}`;
+        element.innerHTML = `${Math.round(convertedTemp)}°`;
     });
 }
 
