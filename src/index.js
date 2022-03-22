@@ -42,6 +42,28 @@ function formatDate(timestamp) {
     let result = `${currentDay}, ${currentMonth} ${currentDate}, ${currentHour}:${currentMinutes} ${amPm}`;
     return result;
 }
+
+function formatDateAsUtc(timestamp) {
+    let date = new Date(timestamp * 1000);
+
+    let currentDay = days[date.getUTCDay()];
+    let currentMonth = months[date.getUTCMonth()];
+    let currentDate = date.getUTCDate();
+    let currentHour = date.getUTCHours();
+    let currentMinutes = date.getUTCMinutes();
+    let amPm = currentHour < 12 ? "a.m" : "p.m";
+    if (currentHour > 12) {
+        currentHour = currentHour - 12;
+    } else if (currentHour === 0) {
+        currentHour = 12;
+    }
+    if (currentMinutes < 10) {
+        currentMinutes = "0" + currentMinutes;
+    }
+    let result = `${currentDay}, ${currentMonth} ${currentDate}, ${currentHour}:${currentMinutes} ${amPm}`;
+    return result;
+}
+
 function getForecastDay(timestamp) {
     let date = new Date(timestamp * 1000);
     let day = `${months[date.getMonth()]} ${date.getDate()}`;
@@ -147,8 +169,26 @@ function updateWeather(response) {
         `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
 
+    let currDate = new Date();
+    // let localTime = Math.floor(d.getTime() / 1000);
+    // let localOffset = d.getTimezoneOffset() * 60;
+    // let utc = localTime + localOffset;
+    let utc = Math.floor(currDate.getTime() / 1000);
+    let searchedCityTimestamp = utc + response.data.timezone;
+    //let nDate = new Date(utc + 1000 * response.data.timezone);
+    let searchedCityDateTime = formatDateAsUtc(searchedCityTimestamp);
+    console.log(
+        `UtcTimestamp: ${utc} -- 
+        UtcDate: ${formatDateAsUtc(utc)} --
+        LocalDate: ${formatDate(utc)} -- 
+        d.toUtcString: ${currDate.toUTCString()} -- 
+        TimestampInCity: ${searchedCityTimestamp} -- 
+        DateInCity: ${searchedCityDateTime}  -- 
+        ResponseTimeZone: ${response.data.timezone}`
+    );
+
     let displayDateElement = document.getElementById("dateTime");
-    displayDateElement.innerHTML = formatDate(response.data.dt);
+    displayDateElement.innerHTML = searchedCityDateTime;
 
     currentTemperature = displayTemperature;
     feelslikeTemperature = displayFeelslike;
