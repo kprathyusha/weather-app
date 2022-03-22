@@ -116,8 +116,10 @@ function searchCity(event) {
         return;
     }
     let cityName = inputCity.split(",")[0];
+    //console.log(cityName);
     cityName = cityName.split("-")[0];
     cityName = cityName.trim();
+    //console.log(cityName);
     if (!cityName) {
         alert("Please enter a valid city name");
         return;
