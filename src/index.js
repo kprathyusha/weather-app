@@ -110,7 +110,13 @@ function getforecastData(coords) {
 function searchCity(event) {
     event.preventDefault();
     //let searchInputCity = document.querySelector("#searchInput");
-    let cityName = searchInputCity.value;
+    let inputCity = searchInputCity.value.trim();
+    if (!inputCity) {
+        alert("Please enter a valid city name");
+        return;
+    }
+    let cityName = inputCity.split(",")[0];
+    cityName = cityName.split("-")[0];
     cityName = cityName.trim();
     if (!cityName) {
         alert("Please enter a valid city name");
