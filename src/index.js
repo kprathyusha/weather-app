@@ -123,6 +123,7 @@ function searchWeather(city) {
     let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
     let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
     let url = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
+    // console.log(url);
     axios
         .get(url)
         .then(updateWeather)
@@ -274,6 +275,7 @@ function convertForecastTemperatures() {
     );
     forecastTempElements.forEach(function (element) {
         let temperature = parseInt(element.innerText);
+        // console.log(`${element.innerText} -- ${temperature}`);
         let convertedTemp = isCelsius
             ? ((temperature - 32) * 5) / 9
             : (temperature * 9) / 5 + 32;
