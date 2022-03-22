@@ -66,19 +66,20 @@ function formatDateAsUtc(timestamp) {
 
 function getForecastDay(timestamp) {
     let date = new Date(timestamp * 1000);
-    let day = `${months[date.getMonth()]} ${date.getDate()}`;
+    let day = `${months[date.getUTCMonth()]} ${date.getUTCDate()}`;
     return day;
 }
 function displayForecast(response) {
     let forecastElement = document.querySelector("#dailyForecast");
     let nextDays = response.data.daily;
+    let timezoneOffsetSec = response.data.timezone_offset;
     let forecastHtml = "";
     nextDays.forEach(function (day, index) {
-        let upcomingDay = getForecastDay(day.dt);
-        if (index == 0) {
+        let upcomingDay = getForecastDay(day.dt + timezoneOffsetSec);
+        if (index == 1) {
             upcomingDay = "Tomorrow";
         }
-        if (index < 6) {
+        if (index > 0 && index < 7) {
             forecastHtml += ` <div class="col-sm-2">
           <h6 class="title">${upcomingDay}</h6>
           <img src="http://openweathermap.org/img/wn/${
@@ -102,7 +103,7 @@ function getforecastData(coords) {
     let apiKey = "f64f24c2cb65bc7a2a8ea12b29366908";
     let unit = isCelsius ? "metric" : "imperial";
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=${unit}`;
-    console.log(apiUrl);
+    // console.log(apiUrl);
     axios.get(apiUrl).then(displayForecast);
 }
 
@@ -171,22 +172,18 @@ function updateWeather(response) {
     );
 
     let currDate = new Date();
-    // let localTime = Math.floor(d.getTime() / 1000);
-    // let localOffset = d.getTimezoneOffset() * 60;
-    // let utc = localTime + localOffset;
     let utc = Math.floor(currDate.getTime() / 1000);
     let searchedCityTimestamp = utc + response.data.timezone;
-    //let nDate = new Date(utc + 1000 * response.data.timezone);
     let searchedCityDateTime = formatDateAsUtc(searchedCityTimestamp);
-    console.log(
-        `UtcTimestamp: ${utc} -- 
-        UtcDate: ${formatDateAsUtc(utc)} --
-        LocalDate: ${formatDate(utc)} -- 
-        d.toUtcString: ${currDate.toUTCString()} -- 
-        TimestampInCity: ${searchedCityTimestamp} -- 
-        DateInCity: ${searchedCityDateTime}  -- 
-        ResponseTimeZone: ${response.data.timezone}`
-    );
+    // console.log(
+    //     `UtcTimestamp: ${utc} --
+    //     UtcDate: ${formatDateAsUtc(utc)} --
+    //     LocalDate: ${formatDate(utc)} --
+    //     d.toUtcString: ${currDate.toUTCString()} --
+    //     TimestampInCity: ${searchedCityTimestamp} --
+    //     DateInCity: ${searchedCityDateTime}  --
+    //     ResponseTimeZone: ${response.data.timezone}`
+    // );
 
     let displayDateElement = document.getElementById("dateTime");
     displayDateElement.innerHTML = searchedCityDateTime;
